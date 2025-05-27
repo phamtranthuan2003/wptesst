@@ -619,7 +619,6 @@ svg,
 img,
 embed,
 object {
-	display: block;
 	height: auto;
 	max-width: 100%;
 }

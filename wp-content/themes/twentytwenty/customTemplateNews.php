@@ -24,7 +24,7 @@ get_header();
     <!-- Category Filter -->
     <?php
     $categories = get_categories(['hide_empty' => true]);
-    $current_cat_id = isset($_GET['cat']) ? intval($_GET['cat']) : 0;
+    $current_cat_id = isset($_GET['category']) ? intval($_GET['category']) : 0;
 
     if (!empty($categories)): ?>
       <div class="category-filter">
@@ -44,15 +44,13 @@ get_header();
     <!-- Post List -->
     <div class="post-list" style="display: flex; flex-wrap: wrap; gap: 20px;">
       <?php
-      $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-
       $args = [
         'post_type'      => 'post',
-        'posts_per_page' => 10,
+        'posts_per_page' => 11,
         'paged'          => $paged,
       ];
       if ($current_cat_id) {
-        $args['cat'] = $current_cat_id;
+        $args['category'] = $current_cat_id;
       }
 
       $query = new WP_Query($args);
@@ -94,7 +92,7 @@ get_header();
               }
 
               if ($primary_category) {
-                echo '<a href="' . esc_url(get_category_link($primary_category->term_id)) . '">';
+                echo '<a href="' . '">';
                 echo esc_html($primary_category->name);
                 echo '</a>';
               }
@@ -108,17 +106,23 @@ get_header();
           </article>
         <?php
         endwhile;
-
-        // Pagination
-        echo paginate_links([
-          'total' => $query->max_num_pages
-        ]);
-
-        wp_reset_postdata();
-      else: ?>
-        <p><?php esc_html_e('No posts found.', 'textdomain'); ?></p>
-      <?php endif; ?>
+      ?>
     </div>
+
+      <!-- Pagination -->
+      <div class="pagination" style="margin-top: 40px; text-align: center;">
+        <?php
+          echo paginate_links([
+            'total' => $query->max_num_pages,
+            'prev_text' => __('« Prev'),
+            'next_text' => __('Next »'),
+          ]);
+        ?>
+      </div>
+      <?php
+      else: ?>
+        <p><?php esc_html_e('No posts found', 'textdomain'); ?></p>
+      <?php endif; ?>
   </div>
 </main>
 
@@ -186,4 +190,22 @@ get_header();
     font-size: 19px;
     margin-top: 10px;
   }
+  .pagination .page-numbers {
+  display: inline-block;
+  margin: 0 6px;
+  padding: 8px 14px;
+  background-color: #f0f0f0;
+  color: #333;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.pagination .page-numbers:hover,
+.pagination .current {
+  background-color: #00c16a;
+  color: #fff;
+}
+
 </style>
