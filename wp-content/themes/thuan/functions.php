@@ -29,7 +29,7 @@ if ( !function_exists('thuan_theme_setup') ) {
       /* Thêm post thumbnail */
         add_theme_support('post-thumbnails');
         /* Post Format */
-        add_theme_support('post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat'));  
+        add_theme_support('post-formats', array('gallery', 'link', 'image', 'quote', 'video'));  
         /* Thêm title-tag */
         add_theme_support('title-tag');
         /* Thêm custom background */
@@ -136,17 +136,47 @@ if ( !function_exists('thuan_thumbnail') ) {
 }
 /**
  @ Thiết lập tiêu đề bài viết
- */ 
+ */
 if ( !function_exists('thuan_entry_header') ) {
     function thuan_entry_header() {
+        echo '<div class="entry-meta">';
+        if ( get_post_type() === 'post' ) {
+            echo '<span class="posted-in"> | ';
+            the_category(', ');
+            echo '</span>';
+        }
+        echo '<span class="posted-on">' . get_the_date() . '</span>';
+        echo '</div>';
         if ( is_single() ) {
             the_title('<h1 class="entry-title">', '</h1>');
         } else {
             the_title('<h2 class="entry-title"><a href="' . get_permalink() . '" rel="bookmark">', '</a></h2>');
         }
-        echo '<div class="entry-meta">';
-        echo '<span class="posted-on">' . get_the_date() . '</span>';
-        echo '<span class="byline"> ' . __('by', 'thuan') . ' ' . get_the_author() . '</span>';
+    }
+}
+/**
+ @ Thiết lập nội dung bài viết
+ */
+if ( !function_exists('thuan_entry_content') ) {
+    function thuan_entry_content() {
+        if ( is_single() ) {
+            the_content();
+        } else {
+            the_excerpt();
+        }
+        echo '<div class="entry-footer">';
         echo '</div>';
     }
 }
+/**
+ @ Nhúng css
+ */
+function thuan_styles() {
+    // wp_register_style( 'reset-style', get_template_directory_uri() . '/reset.css', array(), '1.0', 'all' );
+    // wp_enqueue_style( 'reset-style' );
+    wp_register_style( 'main-style', get_template_directory_uri() . '/style.css', array(), '1.0', 'all' );
+    wp_enqueue_style( 'main-style' );
+    
+}
+add_action('wp_enqueue_scripts', 'thuan_styles');
+add_theme_support('custom-logo');
