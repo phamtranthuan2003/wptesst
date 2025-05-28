@@ -21,14 +21,13 @@
             </a>
             <?php thuan_menu('primary-menu'); ?>
         </div><br><br><br>
-<style>
-    .logo img.custom-logo {
-    width: 280px;       /* Kích thước nhỏ lại */
-    height: auto;
-    display: block;
-    top: 10px;
-    left: 10px;
-    z-index: 1000;
-}
-
-</style>
+        <style>
+            .logo img.custom-logo {
+            width: 240px;
+            height: auto;
+            display: block;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+        }
+        </style>

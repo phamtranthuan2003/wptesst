@@ -66,13 +66,13 @@ table, table tr, table th, table td {
   border-collapse: collapse;
   padding: 8px;
 }
-/* #container {
+.section-inner {
   width: 80%;
   margin: 0 auto;
   padding: 10px 25px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-} */
+}
 .logo {
     display: flex;
     justify-content: space-between;
@@ -278,7 +278,98 @@ footer.modern-footer ul li a:hover {
         background-color: #00c16a;
         color: #fff;
     }
-    #container {
-    width: 80%;
-    margin: 0 auto; /* căn giữa theo chiều ngang */
-    }
+    /* Footer Styles */
+.modern-footer {
+  background-color: #52db6e;
+  color: #fff;
+  font-family: sans-serif;
+  margin-top: 80px;
+  padding-top: 0;
+}
+
+.footer-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-left {
+  flex: 1 1 350px;
+  background: #fff;
+  color: #000;
+  padding: 40px 30px;
+  border-bottom-right-radius: 80px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer-left h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.contact-button {
+  display: inline-block;
+  padding: 12px 20px;
+  background-color: #e0fff0;
+  color: #00c16a;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-button:hover {
+  background-color: #c8f7e0;
+}
+
+.arrow {
+  margin-left: 10px;
+}
+
+.social-icons {
+  margin-top: 20px;
+}
+
+.linkedin-icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: #00c16a;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 50%;
+  text-decoration: none;
+}
+
+.footer-right {
+  flex: 2 1 600px;
+  display: flex;
+  justify-content: space-around;
+  padding: 60px 40px;
+  box-sizing: border-box;
+}
+
+.footer-column h4 {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+  color: #ffffff;
+  text
