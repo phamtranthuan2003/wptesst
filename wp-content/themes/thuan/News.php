@@ -15,7 +15,7 @@ get_header();
             </div>
 
             <?php
-            $image = get_field('image_event');
+            $image = get_field('image_on_the_right');
             if ($image): ?>
                 <div class="acf-image">
                     <?php echo wp_get_attachment_image($image, 'full', false, [

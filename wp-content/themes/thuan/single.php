@@ -42,8 +42,13 @@
 
                 <div class="fullwidth-content">
                     <div class="inner-content">
-                        <?php the_content(); ?>
 
+                        <!-- TEXT CONTENT -->
+                        <div class="post-text-content">
+                            <?php the_content(); ?>
+                        </div>
+
+                        <!-- IMAGE CONTENT -->
                         <?php
                         wp_link_pages([
                             'before' => '<nav class="page-links">',
@@ -55,8 +60,8 @@
                         ?>
 
                         <?php
-                        $appstore_link = get_post_meta(get_the_ID(), 'appstore_link', true);
-                        $googleplay_link = get_post_meta(get_the_ID(), 'googleplay_link', true);
+                        $appstore_link = get_field('ios');
+                        $googleplay_link = get_field('android');
                         ?>
                         <?php if ($appstore_link || $googleplay_link): ?>
                             <div class="download-buttons">
@@ -73,14 +78,63 @@
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
+
+                        <!-- SHARE -->
+                        <div class="share-heading">
+                            <div class="double-arrow-down"></div> <br>
+                            <h2>Want to share this article?</h2>
+                            <!-- AddToAny BEGIN -->
+                            <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                                <a class="a2a_button_facebook"></a>
+                                <a class="a2a_button_copy_link"></a>
+                            </div>
+                            <script defer src="https://static.addtoany.com/menu/page.js"></script>
+                            <!-- AddToAny END -->
+                        </div> <br><br><br><br><br>
+
+                        <!-- POST NAVIGATION -->
+                        <div class="post-navigation">
+                            <div class="nav-previous">
+                                <?php previous_post_link('%link', '<span class="nav-icon">‹</span><span>Back</span>'); ?>
+                            </div>
+                            <div class="nav-next">
+                                <?php next_post_link('%link', '<span>Next</span><span class="nav-icon">›</span>'); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="inner-box">
+                    <div class="related">
+                        <h3> You may also interested in...</h3> <br><br><br><br>
+                        <?php
+                        $related_posts = get_field('related_posts');
+
+                        if ($related_posts): ?>
+                            <div class="related-posts">
+                                <ul class="related-posts-list">
+                                    <?php foreach ($related_posts as $post): setup_postdata($post); ?>
+                                        <li class="related-post-item">
+                                            <a href="<?php the_permalink(); ?>">
+                                                <?php if (has_post_thumbnail()): ?>
+                                                    <div class="related-thumb">
+                                                        <?php the_post_thumbnail('medium'); ?>
+                                                    </div>
+                                                <?php endif; ?>
+                                                <div class="related-title"><?php the_title(); ?></div>
+                                                <div class="related-date"><?php echo get_the_date('d/m/Y'); ?></div>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                    <?php wp_reset_postdata(); ?>
+                                </ul>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
-
         <?php endwhile;
         endif; ?>
-
     </div>
-</main>
+</main><br><br><br><br><br><br>
 
 <?php get_footer(); ?>
 <style>
@@ -126,7 +180,7 @@
         font-size: 48px;
         line-height: 1.2;
         color: #2A2A2A;
-        margin: 20px 0;
+        margin: 40px;
     }
 
     .post-date {
@@ -136,8 +190,6 @@
     }
 
     .fullwidth-content {
-        max-width: 1440px;
-        margin: 80px auto;
         background-color: #f5f5f5;
         border-radius: 36px;
         padding: 60px 20px;
@@ -174,7 +226,7 @@
         display: block;
         margin: 40px auto;
         width: 1160px;
-        height: 600px;
+        height: 652px;
         object-fit: cover;
         border-radius: 12px;
     }
@@ -186,4 +238,174 @@
         object-fit: contain;
         border-radius: 0;
     }
+
+    .post-text-content {
+        margin-bottom: 60px;
+    }
+
+    .post-text-content p,
+    .post-text-content h2,
+    .post-text-content ul,
+    .post-text-content ol {
+        margin-bottom: 20px;
+        font-size: 18px;
+        line-height: 1.6;
+        color: #333;
+    }
+    .post-image-content {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .post-image-content img.featured-image {
+        width: 1160px;
+        height: 600px;
+        object-fit: cover;
+        border-radius: 12px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .share-heading {
+        text-align: center;
+        margin-top: 60px;
+    }
+
+    .a2a_kit {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin-top: 20px;
+    }
+
+    /* Nút Facebook */
+    .a2a_button_facebook {
+        width: 64px;
+        height: 64px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #57D575;
+        border-radius: 50%;
+        color: white;
+        font-size: 28px;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Nút Copy Link dạng pill lớn */
+    .a2a_button_copy_link {
+        width: 64px;
+        height: 64px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #57D575;
+        border-radius: 50%;
+        color: white;
+        font-size: 28px;
+        transition: background-color 0.3s ease;
+    }
+
+    .double-arrow-down {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .double-arrow-down::before,
+    .double-arrow-down::after {
+        content: '⌄';
+        color: #2ecc71;
+        font-size: 80px;
+        line-height: 1;
+    }
+
+    .post-navigation {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        margin-top: 60px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        color: #333;
+    }
+
+    .post-navigation a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        color: inherit;
+        transition: opacity 0.3s ease;
+    }
+
+    .post-navigation a:hover {
+        opacity: 0.7;
+    }
+
+    .nav-icon {
+        width: 54px;
+        height: 54px;
+        border: 1px solid #333;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+    .related-posts-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1220px;
+    gap: 40px 20px; /* khoảng cách giữa các item */
+}
+
+.related-post-item {
+    width: calc(33.333% - 13.33px); /* để đủ 3 cột có khoảng cách */
+    box-sizing: border-box;
+}
+
+.related-post-item a {
+    text-decoration: none; /* Gỡ gạch chân tiêu đề */
+    color: inherit;
+    display: block;
+}
+
+.related-thumb img {
+    width: 394px;
+    height: 277.2281494140625px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.related-title {
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 10px;
+    color: #2A2A2A;
+}
+
+.related-date {
+    font-size: 14px;
+    color: #999;
+    margin-top: 4px;
+}
+.wp-block-columns{
+    gap: 8px;
+}
+.wp-block-gallery.has-nested-images.is-cropped figure.wp-block-image:not(#individual-image) img{
+    width: 1160px;
+    height: 600px;
+    border-radius: 12px;
+}
 </style>

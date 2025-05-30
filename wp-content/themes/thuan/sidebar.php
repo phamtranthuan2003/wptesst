@@ -4,4 +4,3 @@
     else:
         echo '<p>' . __('No widgets found in this sidebar', 'thuan') . '</p>';
     endif;
-    

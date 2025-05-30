@@ -178,8 +178,6 @@ if (!function_exists('thuan_entry_content')) {
  */
 function thuan_styles()
 {
-    // wp_register_style( 'reset-style', get_template_directory_uri() . '/reset.css', array(), '1.0', 'all' );
-    // wp_enqueue_style( 'reset-style' );
     wp_register_style('main-style', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
     wp_enqueue_style('main-style');
 }
@@ -193,58 +191,3 @@ add_theme_support('custom-header', array(
     'flex-width'    => true,
     'header-text'   => false,
 ));
-
-// Tạo Meta Box nhập link App Store & Google Play
-function add_game_store_links_meta_box()
-{
-    add_meta_box(
-        'game_store_links',
-        'Game Store Links',
-        'render_game_store_links_meta_box',
-        'post',
-        'side',
-        'default'
-    );
-}
-add_action('add_meta_boxes', 'add_game_store_links_meta_box');
-
-function render_game_store_links_meta_box($post) {
-    wp_nonce_field('save_game_store_links', 'game_store_links_nonce');
-
-    $appstore_link = get_post_meta($post->ID, 'appstore_link', true);
-    $googleplay_link = get_post_meta($post->ID, 'googleplay_link', true);
-    ?>
-    <p>
-        <label for="appstore_link"><strong>App Store URL:</strong></label><br>
-        <input type="url" name="appstore_link" id="appstore_link" value="<?php echo esc_attr($appstore_link); ?>" style="width:100%;">
-    </p>
-    <p>
-        <label for="googleplay_link"><strong>Google Play URL:</strong></label><br>
-        <input type="url" name="googleplay_link" id="googleplay_link" value="<?php echo esc_attr($googleplay_link); ?>" style="width:100%;">
-    </p>
-    <?php
-}
-
-function save_game_store_links_meta_box($post_id) {
-    if (!isset($_POST['game_store_links_nonce']) || !wp_verify_nonce($_POST['game_store_links_nonce'], 'save_game_store_links')) {
-        return;
-    }
-
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return;
-    }
-
-    if (!current_user_can('edit_post', $post_id)) {
-        return;
-    }
-
-    if (isset($_POST['appstore_link'])) {
-        update_post_meta($post_id, 'appstore_link', esc_url_raw($_POST['appstore_link']));
-    }
-
-    if (isset($_POST['googleplay_link'])) {
-        update_post_meta($post_id, 'googleplay_link', esc_url_raw($_POST['googleplay_link']));
-    }
-}
-
-add_action('save_post', 'save_game_store_links_meta_box');
