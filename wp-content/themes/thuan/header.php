@@ -4,6 +4,7 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php wp_head(); ?>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body <?php body_class(); ?>>
@@ -40,7 +41,7 @@
         </header>
 </div>
 <?php else : ?>
-    <div class="slider-wrapper">               
+    <div class="slider-wrapper">
         <header class="site-header">
         <div class="header-container">
             <div class="logo">
@@ -81,7 +82,7 @@
     margin: 0 auto;
 }
 .header-container {
-    Width: 1224px;
+    width: 1224px;
     height: 116px;
     padding: 0;
     display: flex;
