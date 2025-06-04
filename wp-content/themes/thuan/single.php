@@ -177,12 +177,11 @@
 
     .category-link {
         display: inline-block;
-        padding: 10px 40px;
+        padding: 15px 55px;
         border: 1px solid #000;
         border-radius: 53px;
         text-decoration: none;
         color: #000;
-        font-weight: 600;
         font-size: 18px;
     }
 
@@ -222,7 +221,7 @@
     }
 
     .store-badge img {
-        width: 180px;
+        width: 100%;
         height: auto;
         display: block;
     }
@@ -305,31 +304,31 @@
     }
 
     .a2a_button_copy_link {
-    width: 181px;
-    height: 54px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    border-radius: 53px;
-    border: 1.37px solid #57D575;
-    padding: 8px 30px;
-    color: #57D575;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 198%;
-    letter-spacing: 0;
-    background-color: transparent;
-    text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
+        width: 181px;
+        height: 54px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        border-radius: 53px;
+        border: 1.37px solid #57D575;
+        padding: 8px 30px;
+        color: #57D575;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 198%;
+        letter-spacing: 0;
+        background-color: transparent;
+        text-decoration: none;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-.a2a_button_copy_link svg {
-    width: 20px;
-    height: 20px;
-    fill: #57D575;
-}
+    .a2a_button_copy_link svg {
+        width: 20px;
+        height: 20px;
+        fill: #57D575;
+    }
 
 
 
@@ -435,12 +434,90 @@
         height: 600px;
         border-radius: 12px;
     }
+
     p {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 113px;
-    max-width: 803px;
-    margin-bottom: 40px;
-    padding-left: 250px;
-    gap: 10px;
+        line-height: 113px;
+        max-width: 803px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .main-menu ul li a {
+        display: inline-block;
+        width: 66px;
+        height: 36px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 198%;
+        letter-spacing: 0;
+        color: #000 !important;
+        text-decoration: none;
+    }
+
+    .main-menu ul li a:hover,
+    .main-menu ul li.current-menu-item a,
+    .main-menu ul li.current_page_item a,
+    .main-menu ul li.current-menu-ancestor a,
+    .main-menu ul li.current_page_parent a {
+        color: #57D575 !important;
+        text-decoration: none;
+    }
+
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .single-container {
+        padding: 16px;
+    }
+
+    .post-title {
+        font-size: 24px;
+        line-height: 1.3;
+    }
+
+    @media (max-width: 768px) {
+        .inner-box {
+            padding: 12px;
+        }
+
+        .post-title {
+            font-size: 20px;
+        }
+
+        .download-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .store-badge img {
+            width: 160px;
+            height: auto;
+        }
+
+        .share-heading {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .a2a_kit {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .post-text-content {
+            font-size: 16px;
+            line-height: 1.6;
+        }
     }
 </style>

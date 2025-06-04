@@ -7,7 +7,14 @@
       </a>
 
       <div class="social-icons">
-        <a href="https://www.linkedin.com/company/century-game" class="linkedin-icon">in</a>
+        <a href="https://www.linkedin.com/company/century-game" class="linkedin-icon" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55" fill="none">
+            <circle cx="27.3077" cy="27.3077" r="26.625" stroke="#CECECE" stroke-width="1.36538" />
+            <path d="M27.4215 9.99976H27.3441C17.9767 9.99976 10.3828 17.5958 10.3828 26.966V27.0435C10.3828 36.4137 17.9767 44.0098 27.3441 44.0098H27.4215C36.789 44.0098 44.3828 36.4137 44.3828 27.0435V26.966C44.3828 17.5958 36.789 9.99976 27.4215 9.99976Z" fill="#57D575" />
+            <path d="M18.4909 21.3052C18.0431 20.8893 17.8203 20.3746 17.8203 19.7622C17.8203 19.1497 18.0442 18.6123 18.4909 18.1953C18.9388 17.7794 19.5154 17.5709 20.2217 17.5709C20.9281 17.5709 21.482 17.7794 21.9287 18.1953C22.3766 18.6111 22.5993 19.1342 22.5993 19.7622C22.5993 20.3901 22.3754 20.8893 21.9287 21.3052C21.4808 21.721 20.9126 21.9296 20.2217 21.9296C19.5308 21.9296 18.9388 21.721 18.4909 21.3052ZM22.2229 23.6906V36.4401H18.1955V23.6906H22.2229Z" fill="#FEFFFC" />
+            <path d="M35.6279 24.9502C36.5058 25.9035 36.9442 27.2118 36.9442 28.8775V36.215H33.1193V29.3947C33.1193 28.5546 32.9013 27.9017 32.4666 27.437C32.0318 26.9723 31.4457 26.7387 30.7119 26.7387C29.9782 26.7387 29.3921 26.9711 28.9573 27.437C28.5225 27.9017 28.3045 28.5546 28.3045 29.3947V36.215H24.457V23.655H28.3045V25.3208C28.6941 24.7655 29.2194 24.3271 29.8793 24.0041C30.5392 23.6812 31.2813 23.5204 32.1068 23.5204C33.5767 23.5204 34.7512 23.997 35.6279 24.9502Z" fill="#FEFFFC" />
+          </svg>
+        </a>
       </div>
     </div>
 
@@ -35,7 +42,7 @@
           <li><a href="#">Legal Terms</a></li>
         </ul>
       </div>
-      
+
       <a href="#" id="scrollToTopBtn" class="scroll-to-top" title="Go to top">
         <div class="arrow-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16" fill="none">
@@ -178,20 +185,6 @@
     margin-top: 20px;
   }
 
-  .linkedin-icon {
-    display: inline-block;
-    width: 36px;
-    height: 36px;
-    background-color: #00ff88;
-    color: #000;
-    font-weight: bold;
-    text-align: center;
-    line-height: 36px;
-    border-radius: 50%;
-    text-decoration: none;
-    border: 2px solid #ddd;
-    transition: background-color 0.3s ease;
-  }
 
   .linkedin-icon:hover {
     background-color: #00cc77;

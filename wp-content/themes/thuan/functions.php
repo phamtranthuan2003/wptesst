@@ -182,8 +182,6 @@ function thuan_styles()
     wp_enqueue_style('main-style');
 }
 add_action('wp_enqueue_scripts', 'thuan_styles');
-add_theme_support('custom-logo');
-
 add_theme_support('custom-header', array(
     'width'         => 1920,
     'height'        => 500,
@@ -191,3 +189,8 @@ add_theme_support('custom-header', array(
     'flex-width'    => true,
     'header-text'   => false,
 ));
+function my_theme_scripts() {
+    wp_enqueue_style('aos-css', 'https://unpkg.com/aos@2.3.4/dist/aos.css');
+    wp_enqueue_script('aos-js', 'https://unpkg.com/aos@2.3.4/dist/aos.js', array(), null, true);
+}
+add_action('wp_enqueue_scripts', 'my_theme_scripts');

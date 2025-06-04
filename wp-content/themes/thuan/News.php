@@ -9,8 +9,24 @@ get_header();
             <!-- ACF Content -->
             <div class="acf-content">
                 <div class="acf-text" style="flex: 1;">
-                    <?php if (get_field('content_event')): ?>
-                        <?php echo wp_kses_post(get_field('content_event')); ?>
+                    <?php if (get_field('page_content')): ?>
+                        <?php echo wp_kses_post(get_field('page_content')); ?>
+                    <?php endif; ?>
+                    <!-- Category Filter -->
+                    <?php
+                    $categories = get_categories(['hide_empty' => true]);
+                    $current_cat_id = isset($_GET['category']) ? intval($_GET['category']) : 0;
+
+                    if (!empty($categories)): ?>
+                        <div class="category-filter">
+                            <a href="<?php echo esc_url(get_permalink(get_the_ID())); ?>" class="<?php echo (!$current_cat_id) ? 'active' : ''; ?>">All</a>
+                            <?php foreach ($categories as $category): ?>
+                                <a href="<?php echo esc_url(add_query_arg('category', $category->term_id, get_permalink(get_the_ID()))); ?>"
+                                    class="<?php echo ($current_cat_id === $category->term_id) ? 'active' : ''; ?>">
+                                    <?php echo esc_html($category->name); ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
                     <?php endif; ?>
                 </div>
 
@@ -26,23 +42,6 @@ get_header();
 
                 <?php endif; ?>
             </div>
-
-            <!-- Category Filter -->
-            <?php
-            $categories = get_categories(['hide_empty' => true]);
-            $current_cat_id = isset($_GET['category']) ? intval($_GET['category']) : 0;
-
-            if (!empty($categories)): ?>
-                <div class="category-filter">
-                    <a href="<?php echo esc_url(get_permalink(get_the_ID())); ?>" class="<?php echo (!$current_cat_id) ? 'active' : ''; ?>">All</a>
-                    <?php foreach ($categories as $category): ?>
-                        <a href="<?php echo esc_url(add_query_arg('category', $category->term_id, get_permalink(get_the_ID()))); ?>"
-                            class="<?php echo ($current_cat_id === $category->term_id) ? 'active' : ''; ?>">
-                            <?php echo esc_html($category->name); ?>
-                        </a>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
 
             <!-- Sticky Posts Section -->
             <div class="post-list" style="display: flex; flex-wrap: wrap; gap: 20px;">
@@ -252,7 +251,7 @@ get_header();
         transition: all 0.3s ease;
         Width: 120px;
         height: 52px;
-        Radius: 53px;
+        border-radius: 53px;
         Top: 8px;
         Right: 60px;
         Bottom: 8px;
@@ -266,7 +265,7 @@ get_header();
         color: #000;
         Width: 120px;
         height: 52px;
-        Radius: 53px;
+        border-radius: 53px;
         Top: 8px;
         Right: 60px;
         Bottom: 8px;
@@ -280,7 +279,7 @@ get_header();
         color: #FFFFFF;
         Width: 120px;
         height: 52px;
-        Radius: 53px;
+        border-radius: 53px;
         Top: 8px;
         Right: 60px;
         Bottom: 8px;
@@ -366,8 +365,8 @@ get_header();
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 0px;
-        height: 25px;
+        width: 86px;
+        height: 32px;
         gap: 16px;
         border-radius: 53px;
         padding: 8px 60px;
@@ -413,5 +412,141 @@ get_header();
     h2 {
         font-size: 24px;
         padding-left: 10px;
+    }
+
+    h1 {
+        Width: 666px;
+        Height: 96px;
+        font-weight: 900;
+        font-size: 80px;
+        line-height: 120%;
+        letter-spacing: 0%;
+        text-transform: capitalize;
+    }
+
+    h5 {
+        width: 581px;
+        height: 20px;
+        font-family: Poppins;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 140%;
+        text-transform: capitalize;
+    }
+
+    .main-menu ul li a {
+        display: inline-block;
+        width: 66px;
+        height: 36px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 198%;
+        letter-spacing: 0;
+        color: #000 !important;
+        text-decoration: none;
+    }
+
+    .main-menu ul li a:hover,
+    .main-menu ul li.current-menu-item a,
+    .main-menu ul li.current_page_item a,
+    .main-menu ul li.current-menu-ancestor a,
+    .main-menu ul li.current_page_parent a {
+        color: #57D575 !important;
+        text-decoration: none;
+    }
+
+    .news-container {
+        margin-top: 80px;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .news-container {
+            width: 90%;
+            padding-bottom: 40px;
+            margin-top: 40px;
+        }
+
+        .acf-content {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .acf-text,
+        .acf-image-img {
+            width: 100% !important;
+            height: auto !important;
+            margin-left: 0;
+            margin-top: 0;
+        }
+
+        .category-filter {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .category-filter a {
+            width: auto;
+            padding: 8px 16px;
+            font-size: 14px;
+            height: auto;
+        }
+
+        .post-list {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .post-item {
+            flex: 1 1 100% !important;
+            margin-bottom: 20px !important;
+        }
+
+        .post-item img {
+            width: 100% !important;
+            height: auto !important;
+            border-radius: 12px !important;
+        }
+
+        h1 {
+            font-size: 36px;
+            line-height: 1.2;
+            width: 100%;
+            height: auto;
+        }
+
+        h2 {
+            font-size: 20px;
+            padding-left: 0;
+        }
+
+        h5 {
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .post-category-badge {
+            font-size: 12px;
+            padding: 6px 16px;
+            width: auto;
+            height: auto;
+        }
+
+        .post-date {
+            font-size: 14px;
+            width: auto;
+        }
+
+        .pagination {
+            gap: 20px;
+        }
+
+        .pagination .page-numbers.prev,
+        .pagination .page-numbers.next {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+        }
     }
 </style>
