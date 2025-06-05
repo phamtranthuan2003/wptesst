@@ -39,10 +39,8 @@
                         <div class="post-date"><?php echo get_the_date('d/m/Y'); ?></div>
                     </div>
                 </div>
-
                 <div class="fullwidth-content">
                     <div class="inner-content">
-
                         <!-- TEXT CONTENT -->
                         <div class="post-text-content">
                             <?php the_content(); ?>
@@ -114,7 +112,7 @@
                             </div>
                         </div>
                     </div>
-                </div><br>
+                </div>
                 <div class="inner-box">
                     <div class="related">
                         <h3> You may also interested in...</h3> <br><br><br><br>
@@ -152,16 +150,14 @@
 <style>
     .outer-box {
         max-width: 1440px;
-        margin: 100px auto 0;
         display: flex;
         justify-content: center;
-        padding: 50px 0;
         border-radius: 36px;
     }
 
     .inner-box {
-        width: 90%;
-        max-width: 1220px;
+        width: 1440px;
+        height: 413px;
         text-align: left;
         margin: 0 auto;
         margin-bottom: 40px;
@@ -189,9 +185,11 @@
         font-family: 'Raleway', sans-serif;
         font-weight: 900;
         font-size: 48px;
-        line-height: 1.2;
         color: #2A2A2A;
-        margin: 40px;
+        margin: 40px auto;
+        line-height: 1.3;
+        max-width: 803px;
+        word-wrap: break-word;
     }
 
     .post-date {
@@ -203,11 +201,15 @@
     .fullwidth-content {
         background-color: #f5f5f5;
         border-radius: 36px;
-        padding: 60px 20px;
+        padding: 30px 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 
     .inner-content {
         max-width: 1220px;
+        width: 100%;
         margin: 0 auto;
 
     }
@@ -238,7 +240,6 @@
         margin: 40px auto;
         width: 1160px;
         height: 652px;
-        object-fit: cover;
         border-radius: 12px;
     }
 
@@ -250,9 +251,7 @@
         border-radius: 0;
     }
 
-    .post-text-content {
-        margin-bottom: 60px;
-    }
+
 
     .post-text-content p,
     .post-text-content h2,
@@ -262,6 +261,8 @@
         font-size: 18px;
         line-height: 1.6;
         color: #333;
+        font-family: 'Poppins';
+
     }
 
     .post-image-content {
@@ -387,18 +388,15 @@
         margin: 0 auto;
         max-width: 1220px;
         gap: 40px 20px;
-        /* khoảng cách giữa các item */
     }
 
     .related-post-item {
         width: calc(33.333% - 13.33px);
-        /* để đủ 3 cột có khoảng cách */
         box-sizing: border-box;
     }
 
     .related-post-item a {
         text-decoration: none;
-        /* Gỡ gạch chân tiêu đề */
         color: inherit;
         display: block;
     }
@@ -426,8 +424,29 @@
     }
 
     .wp-block-columns {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         gap: 8px;
+        width: 1160px;
+        height: 575px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin: 0 auto;
     }
+
+    .wp-block-column {
+        display: flex;
+        justify-content: center;
+    }
+
+    .wp-block-columns img {
+        max-width: 100%;
+        object-fit: contain;
+        display: block;
+    }
+
+
 
     .wp-block-gallery.has-nested-images.is-cropped figure.wp-block-image:not(#individual-image) img {
         width: 1160px;
@@ -475,12 +494,12 @@
     }
 
     .single-container {
-        padding: 16px;
-    }
-
-    .post-title {
-        font-size: 24px;
-        line-height: 1.3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+        padding: 20px;
     }
 
     @media (max-width: 768px) {
@@ -518,6 +537,9 @@
         .post-text-content {
             font-size: 16px;
             line-height: 1.6;
+            margin-bottom: 60px;
+            display: flex;
+            justify-content: center;
         }
     }
 </style>
