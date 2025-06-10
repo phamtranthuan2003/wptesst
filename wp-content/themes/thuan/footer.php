@@ -220,7 +220,6 @@
   }
 
   .footer-column {
-    text-align: center;
     margin: 0 auto;
   }
 
